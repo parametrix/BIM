@@ -13,4 +13,17 @@
     <TooltipImage></TooltipImage>
     <LargeImage></LargeImage>
   </AddIn>
+  <AddIn Type="Command">
+    <Assembly>MacroUtils.bundle\Content\MacroUtils.dll</Assembly>
+    <AddInId>41B80550-3080-4FCA-A40D-5EC5A98696C2</AddInId>
+    <FullClassName>MacroUtils.Cmd_DeleteDuplicateIndependentTags</FullClassName>
+    <Text>Delete Duplicate Category Tags</Text>
+    <VendorId>PARAMETRIX</VendorId>
+    <VendorDescription>parametrix.github.io</VendorDescription>
+    <LongDescription>
+      This Command works only on the current view. Code will need to be modified in order to work project wide.
+    </LongDescription>
+    <TooltipImage></TooltipImage>
+    <LargeImage></LargeImage>
+  </AddIn>
 </RevitAddIns>

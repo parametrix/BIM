@@ -70,11 +70,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cmd_DeleteDuplicateIndependentTags.cs" />
     <Compile Include="Cmd_DeleteDuplicateSpatialElementTags.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <AdditionalFiles Include="DebugMacroUtils.addin" />
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="MacroUtils.addin" />

@@ -12,11 +12,11 @@ namespace Utils
     {
         public static bool DoesCollectionContainPoint(IEnumerable<XYZ> list, XYZ point)
         {
-            if (list.Count() > 1)
+            if (list.Count() > 0)
             {
                 foreach (XYZ item in list)
                 {
-                    if (item.IsAlmostEqualTo(point, 10e-8))
+                    if (item.IsAlmostEqualTo(point, 10e-5))
                     {
                         return true;
                     }
