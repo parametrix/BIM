@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2015
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MacroUtils", "MacroUtils\MacroUtils.csproj", "{56A5B21A-82E1-49F0-BFD0-DD912BA5F8DE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{56A5B21A-82E1-49F0-BFD0-DD912BA5F8DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56A5B21A-82E1-49F0-BFD0-DD912BA5F8DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56A5B21A-82E1-49F0-BFD0-DD912BA5F8DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56A5B21A-82E1-49F0-BFD0-DD912BA5F8DE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {91EFC227-3C11-4597-8EAF-7BD57A74DD90}
+	EndGlobalSection
+EndGlobal
