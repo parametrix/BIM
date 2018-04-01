@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<RevitAddIns>
+  <AddIn Type="Command">
+    <Assembly>MacroUtils.bundle\Content\MacroUtils.dll</Assembly>
+    <AddInId>F3454634-0A4F-4630-847D-1699C2F44815</AddInId>
+    <FullClassName>MacroUtils.Cmd_DeleteDuplicateSpatialElementTags</FullClassName>
+    <Text>Delete Duplicate Room and Area Tags</Text>
+    <VendorId>PARAMETRIX</VendorId>
+    <VendorDescription>parametrix.github.io</VendorDescription>
+    <LongDescription>
+      This Command works only on the current view. Code will need to be modified in order to work project wide.
+    </LongDescription>
+    <TooltipImage></TooltipImage>
+    <LargeImage></LargeImage>
+  </AddIn>
+</RevitAddIns>

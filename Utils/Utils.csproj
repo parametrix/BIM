@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{56A5B21A-82E1-49F0-BFD0-DD912BA5F8DE}</ProjectGuid>
+    <ProjectGuid>{4F55042A-8F52-43C2-902B-592E4B7F3286}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MacroUtils</RootNamespace>
-    <AssemblyName>MacroUtils</AssemblyName>
+    <RootNamespace>Utils</RootNamespace>
+    <AssemblyName>Utils</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,7 +31,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Debug\MacroUtils.bundle\Content\</OutputPath>
+    <OutputPath>bin\x64\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
@@ -39,7 +39,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>bin\x64\Release\MacroUtils.bundle\Content\</OutputPath>
+    <OutputPath>bin\x64\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
@@ -70,24 +70,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cmd_DeleteDuplicateSpatialElementTags.cs" />
+    <Compile Include="XYZUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <AdditionalFiles Include="DebugMacroUtils.addin" />
-  </ItemGroup>
-  <ItemGroup>
-    <AdditionalFiles Include="MacroUtils.addin" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Utils\Utils.csproj">
-      <Project>{4f55042a-8f52-43c2-902b-592e4b7f3286}</Project>
-      <Name>Utils</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>copy "$(ProjectDir)\MacroUtils.addin" "$(ProjectDir)\bin\x64\Debug\"
-copy "$(ProjectDir)\MacroUtils.addin" "$(ProjectDir)\bin\x64\Release\"</PostBuildEvent>
-  </PropertyGroup>
 </Project>

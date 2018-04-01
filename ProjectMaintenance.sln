@@ -5,16 +5,32 @@ VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MacroUtils", "MacroUtils\MacroUtils.csproj", "{56A5B21A-82E1-49F0-BFD0-DD912BA5F8DE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{4F55042A-8F52-43C2-902B-592E4B7F3286}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{56A5B21A-82E1-49F0-BFD0-DD912BA5F8DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{56A5B21A-82E1-49F0-BFD0-DD912BA5F8DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56A5B21A-82E1-49F0-BFD0-DD912BA5F8DE}.Debug|x64.ActiveCfg = Debug|x64
+		{56A5B21A-82E1-49F0-BFD0-DD912BA5F8DE}.Debug|x64.Build.0 = Debug|x64
 		{56A5B21A-82E1-49F0-BFD0-DD912BA5F8DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56A5B21A-82E1-49F0-BFD0-DD912BA5F8DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56A5B21A-82E1-49F0-BFD0-DD912BA5F8DE}.Release|x64.ActiveCfg = Release|x64
+		{56A5B21A-82E1-49F0-BFD0-DD912BA5F8DE}.Release|x64.Build.0 = Release|x64
+		{4F55042A-8F52-43C2-902B-592E4B7F3286}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F55042A-8F52-43C2-902B-592E4B7F3286}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F55042A-8F52-43C2-902B-592E4B7F3286}.Debug|x64.ActiveCfg = Debug|x64
+		{4F55042A-8F52-43C2-902B-592E4B7F3286}.Debug|x64.Build.0 = Debug|x64
+		{4F55042A-8F52-43C2-902B-592E4B7F3286}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F55042A-8F52-43C2-902B-592E4B7F3286}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F55042A-8F52-43C2-902B-592E4B7F3286}.Release|x64.ActiveCfg = Release|x64
+		{4F55042A-8F52-43C2-902B-592E4B7F3286}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
