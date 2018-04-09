@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Command">
+    <Text>Rooms in area</Text>
+    <Description>Command to Identify Rooms within and Area in a plan</Description>
+    <Assembly>AreaTools.bundle\Content\AreaTools.dll</Assembly>
+    <FullClassName>AreaTools.Cmd_RoomsInArea</FullClassName>
+    <ClientId>20037F87-C0FC-4F56-8BE0-C57404334A3F</ClientId>
+    <VendorId>PARAMETRIX</VendorId>
+    <VendorDescription>https://parametrix.github.io</VendorDescription>
+  </AddIn>
+</RevitAddIns>
