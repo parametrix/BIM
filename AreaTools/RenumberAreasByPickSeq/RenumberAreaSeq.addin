@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<RevitAddIns>
+  <AddIn Type="Command">
+    <Text>Re-Number Areas By Pick Order</Text>
+    <Description>Renumber Areas with optional prefix based on the order of selection</Description>
+    <Assembly>RenumberAreasByPickSeq.bundle\Content\RenumberAreasByPickSeq.dll</Assembly>
+    <FullClassName>RenumberAreasByPickSeq.Cmd_PickAreasBySeq</FullClassName>
+    <ClientId>27159995-CE96-41DA-B4B5-26CF0BF0DE68</ClientId>
+    <VendorId>Francis Sebastian</VendorId>
+  </AddIn>
+</RevitAddIns>
