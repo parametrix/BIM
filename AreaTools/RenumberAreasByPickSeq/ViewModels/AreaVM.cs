@@ -30,8 +30,7 @@ namespace RenumberAreasByPickSeq.ViewModels
             get { return _pickOrder; }
             set
             {
-                _pickOrder = value;
-                OnPropertyChanged("PickOrder");
+                SetField<int>(ref _pickOrder, value, "PickOrder");
             }
         }
 
@@ -40,22 +39,33 @@ namespace RenumberAreasByPickSeq.ViewModels
             get { return _prefix; }
             set
             {
-                _prefix = value;
-                OnPropertyChanged("Prefix");
+                SetField<string>(ref _prefix, value, "Prefix");
             }
         }
 
-        #region PROPERTY CHANGED
+        #region PROPERTY CHANGED NOTIFICATION
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public virtual void NotifyPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        protected bool SetField<T>(ref T field, T value, string propertyName)
+        {
+            if (EqualityComparer<T>.Default.Equals(field, value)) return false;
+            field = value;
+            OnPropertyChanged(propertyName);
+            return true;
+        }
+
         #endregion
     }
 }

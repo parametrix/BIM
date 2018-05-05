@@ -28,8 +28,7 @@ namespace RenumberAreasByPickSeq.ViewModels
             get { return _areaVMs; }
             set
             {
-                _areaVMs = value;
-                OnPropertyChanged("AreaVMs");
+                SetField<ObservableCollection<AreaVM>>(ref _areaVMs, value, "AreaVMs");
             }
         }
 
@@ -38,8 +37,7 @@ namespace RenumberAreasByPickSeq.ViewModels
             get { return _stopSelection; }
             set
             {
-                _stopSelection = value;
-                OnPropertyChanged("StopSelection");
+                SetField<bool>(ref _stopSelection, value, "StopSelection");
             }
         }
 
@@ -48,8 +46,7 @@ namespace RenumberAreasByPickSeq.ViewModels
             get { return _updateParameters; }
             set
             {
-                _updateParameters = value;
-                OnPropertyChanged("UpdateParameters");
+                SetField<bool>(ref _updateParameters, value, "UpdateParameters");
             }
         }
 
@@ -59,17 +56,29 @@ namespace RenumberAreasByPickSeq.ViewModels
             AreaVMs.Add(new AreaVM(area, pickOrder));
         }
 
-        #region PROPERTY CHANGED
+        #region PROPERTY CHANGED NOTIFICATION
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public virtual void NotifyPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        protected bool SetField<T>(ref T field, T value, string propertyName)
+        {
+            if (EqualityComparer<T>.Default.Equals(field, value)) return false;
+            field = value;
+            OnPropertyChanged(propertyName);
+            return true;
+        }
+
         #endregion
     }
 }
