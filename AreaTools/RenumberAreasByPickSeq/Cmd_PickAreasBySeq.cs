@@ -2,10 +2,18 @@
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Selection;
+using Autodesk.Windows;
 using RenumberAreasByPickSeq.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Forms;
+using System.Windows.Interop;
+
+
+using ComponentManager = Autodesk.Windows.ComponentManager;
+using IWin32Window = System.Windows.Forms.IWin32Window;
+using Keys = System.Windows.Forms.Keys;
 
 namespace RenumberAreasByPickSeq
 {
@@ -39,38 +47,26 @@ namespace RenumberAreasByPickSeq
             // make area interior fill visible
             Category interiorFillVisibility = Category.GetCategory(doc, BuiltInCategory.OST_AreaInteriorFillVisibility);
             Category interiorFill = Category.GetCategory(doc, BuiltInCategory.OST_AreaInteriorFill);
+            Category areaRef = Category.GetCategory(doc, BuiltInCategory.OST_AreaReferenceVisibility);
             using (Transaction t = new Transaction(doc))
             {
                 t.Start("Showing Area Interior Fill");
                 doc.ActiveView.SetCategoryHidden(interiorFillVisibility.Id, false);
-                doc.ActiveView.SetCategoryOverrides(interiorFillVisibility.Id, ogs);
+                doc.ActiveView.SetCategoryHidden(areaRef.Id, false);
                 t.Commit();
             }
 
-            while (!ctrlVM.StopSelection)
-            {
-                Reference pickedRef = uidoc.Selection.PickObject(ObjectType.Element, new AreaSelectionFilter());
+            SelectionUtils.GetAreasBySelection(ctrlVM, uidoc, ref counter);
 
-                var refeId = pickedRef.ElementId;
-                Element areaElement = doc.GetElement(refeId);
-                Area area = areaElement as Area;
+            //var areas = uidoc.Selection.PickObjects(ObjectType.Element, new AreaSelectionFilter());
+            //foreach(var refeId in areas)
+            //{
+            //    Element areaElement = uidoc.Document.GetElement(refeId);
+            //    Area area = areaElement as Area;
 
-                // check to see if area is already added
-                // TODO *************************************************
-
-                if(pickedAreas.Contains(area))
-                {
-                    TaskDialog.Show("Duplicate Selection", String.Format("Area with Element ID: {0} was already selected", area.Id.ToString()));
-                    continue;
-                }
-
-                // change color temporarily
-                // TODO**************************************************
-                //doc.ActiveView.SetElementOverrides(areaElement.Id, ogs);
-
-                ctrlVM.AddArea(area, counter);
-                counter++;
-            }
+            //    ctrlVM.AddArea(area, counter);
+            //    counter++;
+            //}
 
             if (ctrlVM.UpdateParameters)
             {
@@ -78,8 +74,6 @@ namespace RenumberAreasByPickSeq
                 // TODO.............................
 
             }
-            
-
 
             return Result.Succeeded;
         }

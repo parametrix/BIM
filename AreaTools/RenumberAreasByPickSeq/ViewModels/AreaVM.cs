@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RenumberAreasByPickSeq.ViewModels
 {
-    public class AreaVM : INotifyPropertyChanged
+    public class AreaVM : INotifyPropertyChanged, IEquatable<AreaVM>
     {
         readonly Area _area;
         private string _prefix;
@@ -42,6 +42,18 @@ namespace RenumberAreasByPickSeq.ViewModels
                 SetField<string>(ref _prefix, value, "Prefix");
             }
         }
+
+        #region EQUATABLE INTERFACE
+        public bool Equals(AreaVM other)
+        {
+            if (null == other) { return false; }
+            if (other.Area.Id.IntegerValue.Equals(this.Area.Id.IntegerValue))
+            {
+                return true;
+            }
+            return false;
+        }
+        #endregion
 
         #region PROPERTY CHANGED NOTIFICATION
         public event PropertyChangedEventHandler PropertyChanged;

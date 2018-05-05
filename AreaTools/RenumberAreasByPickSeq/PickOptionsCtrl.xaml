@@ -31,12 +31,6 @@
                 Content="Update Areas"
                 />
             <Button
-                x:Name="btnEndSelection"
-                Style="{StaticResource BtnGeneric}"
-                Content="End Selection"
-                Click="btnEndSelection_Click"
-                />
-            <Button
                 x:Name="btnCancel"
                 Style="{StaticResource BtnGeneric}"
                 Content="Cancel"

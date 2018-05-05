@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -19,7 +20,7 @@ namespace RenumberAreasByPickSeq
     /// <summary>
     /// Interaction logic for PickOptionsCtrl.xaml
     /// </summary>
-    public partial class PickOptionsCtrl : UserControl
+    public partial class PickOptionsCtrl : System.Windows.Controls.UserControl
     {
         AreaCollectionVM m_areaCollectionVm;
 
@@ -27,13 +28,6 @@ namespace RenumberAreasByPickSeq
         {
             InitializeComponent();
             this.DataContext = m_areaCollectionVm = areaCollectionVM;
-        }
-
-        private void btnEndSelection_Click(object sender, RoutedEventArgs e)
-        {
-            m_areaCollectionVm.StopSelection = true;
-            Window thisWindow = this.Parent as Window;
-            thisWindow.Close();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)

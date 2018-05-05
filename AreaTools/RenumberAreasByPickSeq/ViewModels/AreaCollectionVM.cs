@@ -1,4 +1,5 @@
 ﻿using Autodesk.Revit.DB;
+using Autodesk.Revit.UI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -53,6 +54,26 @@ namespace RenumberAreasByPickSeq.ViewModels
 
         public void AddArea(Area area, int pickOrder)
         {
+            AreaVM newAreaVM = new AreaVM(area, pickOrder);
+            if (AreaVMs.Contains(newAreaVM))
+            {
+                AreaVM existingArea = AreaVMs.Where(x => x.Area.Id.IntegerValue == area.Id.IntegerValue).First();
+
+                TaskDialog tdlg = new TaskDialog("Attention");
+                tdlg.MainInstruction = String.Format("Area (Name:{0}, Id:{1}) is already in the list at postion# {2}. Do you want to remove the original and add this area in the current location?", area.Name, area.Id.ToString(), existingArea.PickOrder);
+                tdlg.CommonButtons = TaskDialogCommonButtons.Yes | TaskDialogCommonButtons.No;
+                var dlgResult = tdlg.Show();
+                if (dlgResult == TaskDialogResult.Yes)
+                {
+                    AreaVMs.Remove(existingArea);
+                    AreaVMs.Add(newAreaVM);
+                    return;
+                }
+                else
+                {
+                    return; // do not add
+                }
+            }
             AreaVMs.Add(new AreaVM(area, pickOrder));
         }
 
