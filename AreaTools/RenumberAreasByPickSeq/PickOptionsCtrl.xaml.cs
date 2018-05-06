@@ -36,5 +36,10 @@ namespace RenumberAreasByPickSeq
             Window thisWindow = this.Parent as Window;
             thisWindow.Close();
         }
+
+        private void btnStopSelection_Click(object sender, RoutedEventArgs e)
+        {
+            m_areaCollectionVm.StopSelection = true;
+        }
     }
 }

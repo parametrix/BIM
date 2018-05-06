@@ -20,6 +20,9 @@ namespace RenumberAreasByPickSeq
     [Transaction(TransactionMode.Manual)]
     public class Cmd_PickAreasBySeq:IExternalCommand
     {
+        static AreaCollectionVM m_AreaCollectionVM;
+        static PickOptionsCtrl m_PickOptionsCtrl;
+
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             UIApplication uiapp = commandData.Application;
@@ -29,24 +32,23 @@ namespace RenumberAreasByPickSeq
 
 
             // set up UI
-            AreaCollectionVM ctrlVM = new AreaCollectionVM();
-            PickOptionsCtrl ctrl = new PickOptionsCtrl(ctrlVM);
+            // check to see if an open window already exists 
+
+            if (null == m_AreaCollectionVM)
+            {
+                m_AreaCollectionVM = new AreaCollectionVM();
+                m_PickOptionsCtrl = new PickOptionsCtrl(m_AreaCollectionVM);
+            }
             Window win = new Window();
             win.Width = 300;
-            win.Content = ctrl;
+            win.Content = m_PickOptionsCtrl;
             win.SizeToContent = SizeToContent.WidthAndHeight;
             win.Topmost = true;
             win.Show();
 
             int counter = 0;
-            List<Area> pickedAreas = new List<Area>();
-            // override graphics settings for picked elements to differentiate from un-picked elements
-            OverrideGraphicSettings ogs = new OverrideGraphicSettings();
-            ogs.SetProjectionFillColor(new Color(255, 255, 255));
-            //ogs.SetProjectionFillColor(new Color(139, 166, 178));
             // make area interior fill visible
             Category interiorFillVisibility = Category.GetCategory(doc, BuiltInCategory.OST_AreaInteriorFillVisibility);
-            Category interiorFill = Category.GetCategory(doc, BuiltInCategory.OST_AreaInteriorFill);
             Category areaRef = Category.GetCategory(doc, BuiltInCategory.OST_AreaReferenceVisibility);
             using (Transaction t = new Transaction(doc))
             {
@@ -56,19 +58,17 @@ namespace RenumberAreasByPickSeq
                 t.Commit();
             }
 
-            SelectionUtils.GetAreasBySelection(ctrlVM, uidoc, ref counter);
+            // works for individual selection  - no highlighting of selected area
+            //SelectionUtils.GetAreasByIndividualSelection(m_AreaCollectionVM, uidoc, ref counter);
 
-            //var areas = uidoc.Selection.PickObjects(ObjectType.Element, new AreaSelectionFilter());
-            //foreach(var refeId in areas)
-            //{
-            //    Element areaElement = uidoc.Document.GetElement(refeId);
-            //    Area area = areaElement as Area;
+            // works for mulitple selection - highlights, but does not update on interface
+            while (!m_AreaCollectionVM.StopSelection)
+            {
+                SelectionUtils.GetAreasByMultipleSelection(m_AreaCollectionVM, uidoc, ref counter);
+            }
+            
 
-            //    ctrlVM.AddArea(area, counter);
-            //    counter++;
-            //}
-
-            if (ctrlVM.UpdateParameters)
+            if (m_AreaCollectionVM.UpdateParameters)
             {
                 // run process to update parameters according to the view model
                 // TODO.............................
