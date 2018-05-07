@@ -48,6 +48,8 @@
             x:Name="listView"
             Grid.Row="1"
             ItemsSource="{Binding AreaVMs}"
+            PreviewMouseMove="listView_PreviewMouseMove"
+            Drop="listView_Drop"
             >
             <ListView.ItemTemplate>
                 <DataTemplate>
