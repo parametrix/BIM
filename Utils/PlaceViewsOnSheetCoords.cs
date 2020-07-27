@@ -14,10 +14,19 @@ using System.Linq;
 namespace ViewsOnSheet
 {
 	/// <summary>
-	/// Description of PlaceViews.
+	/// Container class for Integration (static/singleton?)
 	/// </summary>
 	public class PlaceViews
 	{
+		/// <summary>
+		/// Provide Sheet to place view on and the X & Y 
+		/// coordinates of the Lower Left Corner of the View Port 
+		/// from the Lower Left Corner of the Titleblock
+		/// </summary>
+		/// <param name="sheet">Sheet to place the view on</param>
+		/// <param name="viewToPlace">View to place</param>
+		/// <param name="xOffsetFromTitleBlockLowerLeft">Distance in Feet from the Lower Left Corner of Title Block to Lower Left Corner of Viewport along Horizontal axis</param>
+		/// <param name="yOffsetFromTitleBlockLowerLeft">Distance in Feet from the Lower Left Corner of Title Block to Lower Left Corner of Viewport along Vertical axis</param>
 		public void PlaceViewOnSheetCoords(ViewSheet sheet, View viewToPlace, double xOffsetFromTitleBlockLowerLeft, double yOffsetFromTitleBlockLowerLeft)
 		{
 		  Document doc = sheet.Document;
@@ -43,6 +52,9 @@ namespace ViewsOnSheet
 		  
 		}
 		
+		/// <summary>
+		/// Center Point of Viewport
+		/// </summary>
 		XYZ GetViewportSetBoxCenter(double xOffsetFromTitleBlLowerLeft, double yOffsetFromTitleBlkLowerLeft, Viewport viewport, XYZ titleBlockCorner)
 		{
 		  var outline = viewport.GetBoxOutline();
@@ -50,17 +62,11 @@ namespace ViewsOnSheet
 		  XYZ vportToSheetCorner = titleBlockCorner.Subtract(vportMin);
 		  return new XYZ(vportToSheetCorner.X+xOffsetFromTitleBlLowerLeft, vportToSheetCorner.Y+yOffsetFromTitleBlkLowerLeft,0);
 		}
+
 				
-		View GetViewByName(Document doc,string viewName)
-		{
-		  return new FilteredElementCollector(doc)
-		    .OfClass(typeof(View))
-		    .WhereElementIsNotElementType()
-		    .Cast<View>()
-		    .Where(x=>x.Name==viewName)
-		    .FirstOrDefault();
-		}
-				
+		/// <summary>
+		/// Get Lower Left Corner of Title block Geometry
+		/// </summary>
 		XYZ GetLowerLeftCornerOfTitleBlock(ViewSheet sheet)
 		{
 		  Document doc = sheet.Document;
