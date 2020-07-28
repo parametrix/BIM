@@ -78,7 +78,6 @@ namespace ViewsOnSheet
 		    .FirstOrDefault();
 		  
 		  // get bounding box
-		  Options geometryOptions = new Options();
 		  var bbx = titleBlock.get_BoundingBox(sheet);
 		  
 		  return bbx.Min;
